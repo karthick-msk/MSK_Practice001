@@ -1,9 +1,5 @@
 package browser.common;
 
-import java.sql.DriverManager;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,16 +9,16 @@ import org.stat.Stat;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BrowserCommon {
-	private static final Logger LOGGER = LogManager.getLogger(DriverManager.class);
+//	private static final Logger LOGGER = LogManager.getLogger(DriverManager.class);
 	private static WebDriver driver = null;
 
 	public static void launchBrowser() {
-		// TODO Auto-generated method stub
+		
 		try {
 			switch (Stat.BROWSER) {
 			case "chrome":
 
-				LOGGER.info("Browser launching" + Stat.BROWSER);
+//				LOGGER.info("Browser launching" + Stat.BROWSER);
 				
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();

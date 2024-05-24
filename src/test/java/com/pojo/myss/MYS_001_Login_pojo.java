@@ -1,7 +1,9 @@
 package com.pojo.myss;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 
 public class MYS_001_Login_pojo {
 	private static MYS_001_Login_pojo LoginInstance;
@@ -17,76 +19,62 @@ public class MYS_001_Login_pojo {
 		return LoginInstance;
 	}
 
-	@FindBy(xpath = "//input[@placeholder='Email/Username']")
+	@FindBy(xpath="//span[contains(text(),'Account')]")
+	private WebElement Account;
+	
+	@FindBy(xpath="(//a[@href='https://myshopings.in/login'])[2]")
+	private WebElement loginAccount;
+	
+	@FindAll({
+		@FindBy(id="txt-email"),
+		@FindBy(xpath="(//input[@name='email'])[1]")})
 	private WebElement homepageemailfield;
 
-	public WebElement gethomepageemailfield() {
-		return homepageemailfield;
-	}
-
-	@FindBy(xpath = "//input[@id='password']")
+	
+	@FindBys({
+		@FindBy(xpath = "//input[@id='txt-password']"),
+//		@FindBy(id = "txt-password")
+				})
 	private WebElement homepagepasswordfield;
 
-	public WebElement gethomepagepasswordfield() {
+	
+	@FindBy(xpath = "//button[contains(text(), 'Login')]")
+	private WebElement homepageloginbutton;
+
+		
+	@FindBy(xpath = "//a[contains(text(), 'Create one')]")
+	private WebElement createOne;
+	
+	@FindBy(xpath="//span[contains(text(),'johnwhite')]")
+	private WebElement accountVerify;
+
+	public WebElement getAccount() {
+		return Account;
+	}
+	public WebElement getloginAccount() {
+		return loginAccount;
+	}
+	public WebElement getHomepageemailfield() {
+		return homepageemailfield;
+	}
+	
+
+	public WebElement getHomepagepasswordfield() {
 		return homepagepasswordfield;
 	}
 
-	@FindBy(xpath = "//input[@id='submitLogForm']")
-	private WebElement homepageloginbutton;
-
-	public WebElement gethomepageloginbutton() {
+	public WebElement getHomepageloginbutton() {
 		return homepageloginbutton;
 	}
 
-	@FindBy(xpath = "//span[normalize-space()='Join Now']")
-	private WebElement JOINNOWBUTTON;
-
-	@FindBy(xpath = "//input[@id='usr_name']")
-	private WebElement joinnowusername;
-
-	@FindBy(xpath = "//input[@id='email']")
-	private WebElement EMAILFIELD;
-
-	@FindBy(xpath = "//input[@id='password']")
-	private WebElement passwordfield;
-
-	public WebElement getpasswordfield() {
-		return passwordfield;
+	public WebElement getCreateOne() {
+		return createOne;
+	}
+	public WebElement getaccountVerify() {
+		return accountVerify;
 	}
 
-	@FindBy(xpath = "//input[@id='phoneNumber']")
-	private WebElement Phonenumberfield;
 
-	public WebElement getPhonenumberfield() {
-		return Phonenumberfield;
-	}
-
-	@FindBy(xpath = "//button[@id='register']")
-	private WebElement registerbutton;
-
-	public WebElement getregisterbutton() {
-		return registerbutton;
-	}
-
-	@FindBy(xpath = "//div[@class='snackbar-container  snackbar-pos top-right']")
-	private WebElement Joinnowwarningmessage;
-
-	public WebElement getJoinnowwarningmessage() {
-		return Joinnowwarningmessage;
-	}
-
-	public WebElement getJOINNOWBUTTON() {
-
-		return JOINNOWBUTTON;
-	}
-
-	public WebElement getjoinnowusername() {
-		return joinnowusername;
-	}
-
-	public WebElement getEMAILFIELD() {
-		return EMAILFIELD;
-	}
 
 
 }

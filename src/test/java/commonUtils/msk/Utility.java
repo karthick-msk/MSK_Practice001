@@ -3,9 +3,11 @@ package commonUtils.msk;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -37,7 +39,7 @@ public class Utility {
 
 		Properties properties = new Properties();
 		try {
-			properties.load(getClass().getResourceAsStream("/config.properties"));
+			properties.load(getClass().getResourceAsStream("/stat.properties"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,14 +48,18 @@ public class Utility {
 		Stat.UsernName = properties.getProperty("UsernName");
 		Stat.Password = properties.getProperty("Password");
 	}
-	public static void login() {
 
-		BrowserCommon.getDriver().get(Stat.APP_URL);
-		MYS_001_Login_pojo.getInstance().gethomepageemailfield().sendKeys(Stat.UsernName);
-		MYS_001_Login_pojo.getInstance().gethomepagepasswordfield().sendKeys(Stat.Password);
-		MYS_001_Login_pojo.getInstance().gethomepageloginbutton().click();
-
-	}
+	/*
+	 * public static void login() {
+	 * 
+	 * BrowserCommon.getDriver().get(Stat.APP_URL);
+	 * MYS_001_Login_pojo.getInstance().getHomepageemailfield().sendKeys(Stat.
+	 * UsernName);
+	 * MYS_001_Login_pojo.getInstance().getHomepagepasswordfield().sendKeys(Stat.
+	 * Password); MYS_001_Login_pojo.getInstance().getHomepageloginbutton().click();
+	 * 
+	 * }
+	 */
 	public void initwebelement() {
 		PageFactory.initElements(BrowserCommon.getDriver(), MYS_001_Login_pojo.getInstance());
 //		PageFactory.initElements(BrowserCommon.getDriver(), HB_250_TENNIS_SB_BETS_pojo.getInstance());
@@ -130,5 +136,31 @@ public class Utility {
 		}
 	}
 	
+	public static void getUrl(String url) throws Throwable {
+		try {
+			BrowserCommon.getDriver().get(url);
+			BrowserCommon.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
+	}
+	public static void implicitlyWait(long time) throws Throwable {
+		try {
+			BrowserCommon.getDriver().manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+	public static void assertequalsbase(WebElement element, String string) {
+		try {
+			Assert.assertEquals(element.getText(), string);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}	
 
 }
