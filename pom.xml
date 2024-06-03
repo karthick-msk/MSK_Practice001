@@ -13,6 +13,12 @@
     <artifactId>cucumber-java</artifactId>
     <version>7.11.0</version>
 </dependency>
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.30</version> <!-- Replace with the latest version -->
+    <scope>provided</scope>
+</dependency>
 
 
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
@@ -93,6 +99,18 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.10.1</version>
+    <configuration>
+        <fork>true</fork>
+        <compilerArgs>
+            <arg>--add-opens</arg>
+            <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+        </compilerArgs>
+    </configuration>
+</plugin>
     </plugins>
   </build>
 </project>

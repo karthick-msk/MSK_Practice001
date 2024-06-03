@@ -1,6 +1,4 @@
 package stepdefination;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -58,11 +56,16 @@ public class CommonStepDef {
 			}
 		}
 		@After 
-		public void teardown() {
-			BrowserCommon.getDriver().close();
+		public void teardown(Scenario scenario) {
+			
 			//if scenario pass final take page screeenshot
+			if (!scenario.isFailed()) {
+				byte[] screenshottake = ((TakesScreenshot) BrowserCommon.getDriver())
+						.getScreenshotAs(OutputType.BYTES);
+				scenario.attach(screenshottake, "image/png", "error screen");
+
+			}
+			BrowserCommon.getDriver().close();
 		}
-
-
-
+		
 }

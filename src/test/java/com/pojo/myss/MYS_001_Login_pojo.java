@@ -48,6 +48,11 @@ public class MYS_001_Login_pojo {
 	@FindBy(xpath="//span[contains(text(),'johnwhite')]")
 	private WebElement accountVerify;
 
+	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']")
+	private WebElement loginToaster;
+	
+	
+
 	public WebElement getAccount() {
 		return Account;
 	}
@@ -72,6 +77,9 @@ public class MYS_001_Login_pojo {
 	}
 	public WebElement getaccountVerify() {
 		return accountVerify;
+	}
+	public WebElement getloginToaster() {
+		return loginToaster;
 	}
 
 
