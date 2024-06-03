@@ -95,14 +95,14 @@
     <version>3.10.1</version>
     <configuration>
 		<!-- References to interface static methods are allowed only at source level 1.8 or above -->
-		<source>17</source>
-          <target>17</target>
-        <fork>true</fork>
+		<source>1.8</source>
+          <target>1.8</target>
+     <!--   <fork>true</fork>
         <compilerArgs>
-            <arg>--add-opens</arg>
+          <arg>-add-opens</arg>  
             <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-        </compilerArgs>
-    </configuration>
+        </compilerArgs> -->
+   </configuration>
 </plugin>
     </plugins>
   </build>
