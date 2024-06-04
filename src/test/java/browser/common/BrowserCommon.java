@@ -2,6 +2,7 @@ package browser.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.stat.Stat;
@@ -24,15 +25,26 @@ public class BrowserCommon {
 				driver = new ChromeDriver();
 				driver.manage().window().maximize();
 				break;
+			case "chromeheadless":
+				WebDriverManager.chromedriver().setup();
+				ChromeOptions options = new ChromeOptions();
+		        options.addArguments("--headless");
+		        options.addArguments("--window-size=1920,1080");
+		        driver = new ChromeDriver(options);
+										
+				driver.manage().window().maximize();
+				break;
 			case "Firefox":
 				
 				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
+				driver.manage().window().maximize();
 				break;
 			case "ie":
 				
 				WebDriverManager.edgedriver().setup();
 				driver = new EdgeDriver();
+				driver.manage().window().maximize();
 				break;
 			default:
 				System.out.println("incorrect browser");

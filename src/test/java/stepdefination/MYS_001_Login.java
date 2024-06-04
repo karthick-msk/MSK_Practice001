@@ -27,7 +27,7 @@ public class MYS_001_Login {
 	  @When("the user enter the valid username\\/email id") public void
 	  the_user_enter_the_valid_username_email_id() {
 		  MYS_001_Login_pojo.getInstance().getHomepageemailfield().sendKeys(Stat.UsernName);  
-		  Utility.scrollUpandDownusingCoordinates(0, 400);
+		  Utility.scrollUpandDownusingCoordinates(0, 300);
 	  }
 	  
 	  @When("the user enter the valid password") public void
