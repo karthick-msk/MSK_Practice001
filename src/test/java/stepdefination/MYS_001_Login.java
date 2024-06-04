@@ -26,8 +26,9 @@ public class MYS_001_Login {
 	
 	  @When("the user enter the valid username\\/email id") public void
 	  the_user_enter_the_valid_username_email_id() {
-		  MYS_001_Login_pojo.getInstance().getHomepageemailfield().sendKeys(Stat.UsernName);  
-		  Utility.scrollUpandDownusingCoordinates(0, 300);
+		  MYS_001_Login_pojo.getInstance().getHomepageemailfield().sendKeys(Stat.UsernName); 
+//		  Utility.scrollUpandDownusingCoordinates(0, 300);
+		  Utility.scrollUpandScrollDownusingElement(MYS_001_Login_pojo.getInstance().getHomepageloginbutton());
 	  }
 	  
 	  @When("the user enter the valid password") public void
@@ -38,6 +39,7 @@ public class MYS_001_Login {
 	  @When("the user clicks the login button") public void
 	  the_user_clicks_the_login_button() throws Throwable { 
 		  Utility.implicitlyWait(3);
+		  Utility.waitForElementToBeClickable(MYS_001_Login_pojo.getInstance().getHomepageloginbutton(), 5);
 		   MYS_001_Login_pojo.getInstance().getHomepageloginbutton().click();
 	  }
 	  
@@ -52,8 +54,8 @@ public class MYS_001_Login {
 	  @When("the user enter the valid username\\/email id {string}")
 	  public void the_user_enter_the_valid_username_email_id(String user) {
 		  MYS_001_Login_pojo.getInstance().getHomepageemailfield().sendKeys(user);  
-		  Utility.scrollUpandDownusingCoordinates(0, 300);
-		  
+//		  Utility.scrollUpandDownusingCoordinates(0, 300);
+		  Utility.scrollUpandScrollDownusingElement(MYS_001_Login_pojo.getInstance().getHomepageloginbutton());
 	  }
 	  @When("the user enter the valid password {string}")
 	  public void the_user_enter_the_valid_password(String pass) {

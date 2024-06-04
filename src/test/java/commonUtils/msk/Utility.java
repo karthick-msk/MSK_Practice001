@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.stat.Stat;
 
 import com.pojo.myss.MYS_001_Login_pojo;
@@ -139,7 +141,26 @@ public class Utility {
 
 		}
 	}
-	
+	public static void scrollUpandScrollDownusingElement(WebElement elementlocator) {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) BrowserCommon.getDriver();
+			js.executeScript("arguments[0].scrollIntoView();", elementlocator);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+
+		}
+	}
+	public static void scrolltoBottomPage() {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) BrowserCommon.getDriver();
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+
+		}
+	}
 	public static void getUrl(String url) throws Throwable {
 		try {
 			BrowserCommon.getDriver().get(url);
@@ -157,6 +178,16 @@ public class Utility {
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
+	}
+	public static void waitForElementToBeClickable(WebElement element, int sec) {
+		try {
+			WebDriverWait wait = new WebDriverWait(BrowserCommon.getDriver(), sec);
+			wait.until(ExpectedConditions.elementToBeClickable(element));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+
 	}
 	public static void assertequalsbase(WebElement element, String string) {
 		try {
